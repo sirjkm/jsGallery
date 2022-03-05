@@ -4,7 +4,7 @@ function getElement(selection) {
     return element;
   }
   throw new Error(
-    `Please check "${selection}" selector, no such element exists`
+    `Please check your "${selection}" selector`
   );
 }
 
