@@ -14,20 +14,27 @@ function Gallery(element) {
   
   this.modal = getElement('.modal');
   this.modalImg = getElement('.main-img');
+  this.imageName = getElement('image-name');
   this.modalImages = getElement('.modal-images');
   this.closeBtn = getElement('.close-btn');
   this.nextBtn = getElement(".next-btn");
   this.prevBtn = getElement(".prev-btn");
 
   this.containter.addEventListener('click', function (e) {
-    console.log(this);
-    this.openModal();
+    if (e.target.classList.contains('img')) {
+      this.openModal(e.target, this.list);
+    }
   }.bind(this));
 }
 
-Gallery.prototype.openModal = function () {
-  console.log('open modal');
+Gallery.prototype.openModal = function (selectedImage, list) {
+  this.setMainImage(selectedImage);
   this.modal.classList.add('open');
+}
+
+Gallery.prototype.setMainImage = function (selectedImage) {
+  this.modalImg.src = selectedImage.src;
+  this.imageName.textContent = selectedImage.title;
 }
 
 const nature = new Gallery(getElement('.nature'));
